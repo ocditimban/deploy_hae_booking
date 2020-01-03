@@ -21,3 +21,5 @@ Manually:
 
 Required:
 
+Note:
+ - `winpty docker exec -ti containerid sh` To access container on windows please use the command:

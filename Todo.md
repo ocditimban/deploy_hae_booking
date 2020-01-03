@@ -5,7 +5,7 @@
         - Install ext for php
     - Install composer (create package and install them)
     - Install mysql
-    - Install adminer
+    - Install adminer12
     - Install mongoDB
     - Install nodejs
     - Install mail check

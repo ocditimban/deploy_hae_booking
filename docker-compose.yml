@@ -1,0 +1,44 @@
+version: '2'
+services:
+  db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - './.data/mysql:/var/lib/mysql'
+  my_adminer:
+    image: adminer
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - './.data/mysql:/var/lib/mysql'
+  my_mongodb:
+    image: mongodb
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - './.data/mysql:/var/lib/mysql'
+  my_mail:
+    image: mail
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - './.data/mysql:/var/lib/mysql'
+  hae_booking:
+    build: ./build
+    ports:
+      - 90:80
+    volumes:
+      - ./products:/app
+    links:
+      - db
+    depends_on:
+      - db

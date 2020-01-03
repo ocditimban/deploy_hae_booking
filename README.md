@@ -17,3 +17,7 @@ Manually:
 - Download databases and import by mysql;    
 - Install generateUuid;
 - Update mail and const to connect mail
+
+
+Required:
+

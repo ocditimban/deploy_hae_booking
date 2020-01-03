@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 =======
 # deploy_hae_booking
 
@@ -18,4 +17,3 @@ Manually:
 - Download databases and import by mysql;    
 - Install generateUuid;
 - Update mail and const to connect mail
->>>>>>> 706a16e1f5574966453c004d5ada70a3404e7c74

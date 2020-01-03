@@ -12,7 +12,7 @@
     - Install mongoDB
     - Install nodejs
     - Install mail check
-
+ - Create -> Remove all container and images
 Manually:
 - Download databases and import by mysql;    
 - Install generateUuid;

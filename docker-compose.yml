@@ -2,7 +2,7 @@ version: '3.1'
 services:
   db:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --max_allowed_packet=12697600000
     restart: always
     volumes:
       - ./mysql-dump:/docker-entrypoint-initdb.d
@@ -14,6 +14,7 @@ services:
     restart: always
     ports:
       - 99:8080
+
 #  my_mongodb:
 #    image: mongodb
 #    restart: always
@@ -22,14 +23,15 @@ services:
 #      MYSQL_ROOT_PASSWORD: root
 #    volumes:
 #      - './.data/mysql:/var/lib/mysql'
-#  my_mail:
-#    image: mail
-#    restart: always
-#    command: --default-authentication-plugin=mysql_native_password
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#    volumes:
-#      - './.data/mysql:/var/lib/mysql'
+
+# mail
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+# booking
   hae_booking:
     build: ./build
     ports:
@@ -40,3 +42,12 @@ services:
       - db
     depends_on:
       - db
+
+
+## we'll talk about the php container in the next step
+#apache_with_php:
+#  build: ./mail_build
+#  volumes:
+#    - ./src:/app
+#  ports:
+#    - "91:80"

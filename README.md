@@ -7,12 +7,12 @@
     - Create php build (Done)
         - Install ext for php
     - Install composer (create package and install them) (Done)
-    - Install mysql
-    - Install adminer
+    - Install mysql (Done)
+    - Install adminer (Done)
     - Install mongoDB
-    - Install nodejs
+    - Install nodejs (Done)
     - Install mail check
- - Create -> Remove all container and images
+ - Create -> Remove all container (done)
 Manually:
 - Download databases and import by mysql;    
 - Install generateUuid;
@@ -25,5 +25,7 @@ docker-compose down && docker-compose build && docker-compose up -d
 Note:
 
 winpty docker exec -ti dockerinstall_hae_booking_1 sh
+
+
 winpty docker exec -ti dockerinstall_db_1 sh
  - `winpty docker exec -ti containerid sh` To access container on windows please use the command:

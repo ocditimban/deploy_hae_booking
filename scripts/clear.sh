@@ -1,4 +1,4 @@
 echo "-----Remove the container-----"
 cd ../
-rm -rf .data
+#rm -rf .data
 docker-compose down

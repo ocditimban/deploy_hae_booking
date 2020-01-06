@@ -35,4 +35,4 @@ WORKDIR /app
 
 EXPOSE 90
 
-CMD ["php", "-S", "0.0.0.0:80", "-t", "/app"]
+CMD ["php", "-S", "0.0.0.0:80", "-t", "/app/HAEBooking/public"]

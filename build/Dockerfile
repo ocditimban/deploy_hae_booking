@@ -8,8 +8,11 @@ RUN apt-get update && apt-get install -y git nodejs
 # install php ext
 RUN docker-php-ext-install mysqli pdo_mysql
 # install mongodb ext
+RUN apt-get install -y libcurl4-openssl-dev pkg-config libssl-dev
 RUN pecl install mongodb \
     && docker-php-ext-enable mongodb
+# install netstat to debug port
+RUN apt-get install net-tools
 
 RUN echo "memory_limit = 512 M" >> /usr/local/etc/php/php.ini \
 && echo "max_execution_time = 0"  >> /usr/local/etc/php/php.ini
@@ -23,12 +26,6 @@ RUN go get github.com/mailhog/mhsendmail
 RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 
 RUN echo 'sendmail_path = /usr/bin/mhsendmail --smtp-addr mailhog:1025' > /usr/local/etc/php/php.ini
-
-#  - - - - - - - - - - This quick hack invalidates the cache - - - - - - - - - -
-ADD https://www.google.com /time.now
-# download composer and run them inside
-# RUN git clone --progress --verbose https://github.com/ocditimban/message > /dev/null
-#RUN git clone -q https://github.com/ocditimban/message.git
 
 # install node js and run them inside
 WORKDIR /app

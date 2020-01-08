@@ -1,7 +1,9 @@
 command="cd HAEBooking;"
+#command=$command" npm install -D"
+#command=$command" npm run production"
 command=$command" php artisan key:generate;"
 #command=$command" php artisan cache:clear;"
-#command=$command" php artisan migrate;"
+command=$command" php artisan migrate;"
 #command=$command" composer install;"
 #command=$command" php artisan db:seed --class=UserPermissions;"
 

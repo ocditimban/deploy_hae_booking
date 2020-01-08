@@ -1,6 +1,7 @@
 version: '3.1'
 services:
   db:
+    container_name: hae_database
     image: mysql
     command: --default-authentication-plugin=mysql_native_password --max_allowed_packet=12697600000
     restart: always
@@ -9,20 +10,26 @@ services:
       - ./.data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 99:8080
 
-#  my_mongodb:
-#    image: mongodb
-#    restart: always
-#    command: --default-authentication-plugin=mysql_native_password
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#    volumes:
-#      - './.data/mysql:/var/lib/mysql'
+  mongodb:
+    container_name: hae_mongo
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+#    command: --storageEngine wiredTiger
+
 
 # mail
   mailhog:
@@ -33,6 +40,7 @@ services:
 
 # booking
   hae_booking:
+    container_name: hae_booking
     build: ./build
     ports:
       - 90:80
@@ -40,8 +48,10 @@ services:
       - ./products:/app
     links:
       - db
+      - mongodb
     depends_on:
       - db
+      - mongodb
 
 
 ## we'll talk about the php container in the next step
@@ -51,3 +61,5 @@ services:
 #    - ./src:/app
 #  ports:
 #    - "91:80"
+volumes:
+  mongodata:
